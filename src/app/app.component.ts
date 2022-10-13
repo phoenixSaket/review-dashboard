@@ -15,8 +15,9 @@ export class AppComponent {
     'com.ahnj.ahmobile',
     'com.ahatpa.ahamobile',
     'com.ibxtpa.iamobile',
+    'com.ahc.ahcmobile'
   ];
-  private iosApps = ['584785907', '1112137390', '1337168006', '1337166340'];
+  private iosApps = ['584785907', '1112137390', '1337168006', '1337166340', '1340456041'];
 
   public iosTempRatings = [];
   public apps: any[] = [];
@@ -165,8 +166,8 @@ export class AppComponent {
         case 'com.ibxtpa.iamobile':
           res = 'IA (Android)';
           break;
-        case '1340456041':
-          res = 'AH Caritas';
+        case 'com.ahc.ahcmobile':
+          res = 'AH Caritas (Android)';
           break;
         default:
           break;
