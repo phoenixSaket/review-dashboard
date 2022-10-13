@@ -1,1 +1,20 @@
-<p>android-card works!</p>
+<div class="card-container">
+    <div class="left-container">
+        <div class="author">{{review.userName}}</div>
+        <div class="app">Version : {{review.version}}</div>
+    </div>
+    <div class="center-container">
+        <!-- <div class="title" [ngClass]="'bg-'+detail['im:rating'].label">{{detail.title.label}}</div> -->
+        <div class="rating">
+            <div class="rate" *ngFor="let rate of rating; let i = index;">
+                <span *ngIf="rate.isOn">&#9733;</span>
+                <span *ngIf="!rate.isOn">&#9734;</span>
+            </div>
+        </div>
+        <div class="title">{{review.title}}</div>
+        <div class="content">{{review.text}}</div>
+    </div>
+    <div class="right-container">
+        <div class="date">{{date}}</div>
+    </div>
+</div>
