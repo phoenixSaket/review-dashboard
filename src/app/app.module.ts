@@ -4,10 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { AndroidCardComponent } from './android-card/android-card.component';
+import { IosCardComponent } from './ios-card/ios-card.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent,
+    NavbarComponent,
+    MainPageComponent,
+    AndroidCardComponent,
+    IosCardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
