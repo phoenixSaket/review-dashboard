@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataAndroidService {
   private androidApps: any[] = [];
   private androidReviews: any[] = [];
+  private androidRatings: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +36,13 @@ export class DataAndroidService {
 
   public setAndroidReviews(value: any[]) {
     this.androidReviews = value;
+  }
+
+  public getAndroidRatings(): any[] {
+    return this.androidRatings;
+  }
+
+  public setAndroidRatings(value: any[]) {
+    this.androidRatings = value;
   }
 }

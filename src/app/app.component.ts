@@ -18,11 +18,12 @@ export class AppComponent {
   private iosApps = ['584785907', '1112137390', '1337168006', '1337166340'];
 
   public iosTempRatings = [];
+  private current: number = 0;
 
   constructor(
     private android: DataAndroidService,
     private ios: DataIosService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.androidApps.forEach((app) => {
@@ -30,6 +31,7 @@ export class AppComponent {
         let values = this.android.getAndroidApps();
         values.push(JSON.parse(data.result));
         this.android.setAndroidApps(values);
+        this.getAndroidRatings(JSON.parse(data.result));
         console.log('Android Apps', this.android.getAndroidApps());
       });
 
@@ -65,8 +67,15 @@ export class AppComponent {
       this.ios.getAppReviews(app, i).subscribe((data: any) => {
         // console.log("waa", data);
         let values = this.ios.getIOSReviews();
-        values.push({ app: app, reviews: JSON.parse(data.result) });
-        this.ios.setIOSReviews(values);
+        if (values.find(x => x.app == app)) {
+          let index: any = values.findIndex(x => x.app == app);
+          values[index].reviews.push(JSON.parse(data.result).feed);
+        } else {
+          let review = [JSON.parse(data.result).feed];
+          values.push({ app: app, reviews: review });
+
+          this.ios.setIOSReviews(values);
+        }
         console.log("IOS Reviews", this.ios.getIOSReviews());
       });
     }
@@ -83,10 +92,22 @@ export class AppComponent {
           let url = link.attributes.href;
           let index = url.indexOf('page=');
           let indexNext = url.indexOf('/', index);
-          maxPages = parseInt(url.substring(index+5, indexNext));
+          maxPages = parseInt(url.substring(index + 5, indexNext));
           this.getIOSRatings(app, maxPages);
         }
       });
     });
+  }
+
+  getAndroidRatings(app: any) {
+    let data: any = {};
+    data.name = app.title;
+    data.id = app.appId;
+    data.ratings = app.histogram;
+
+    let values = this.android.getAndroidRatings();
+    values.push(data);
+    this.android.setAndroidRatings(values);
+    console.log("Android Ratings", this.android.getAndroidRatings())
   }
 }
