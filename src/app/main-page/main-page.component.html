@@ -1,1 +1,9 @@
-<p>main-page works!</p>
+<div class="main-page-container">
+    <div class="cards-conatiner" *ngIf="app.isAndroid">
+        {{reviews | json}}
+        <app-android-card *ngFor="let review of reviews?.review?.data" [review] = "review"></app-android-card>
+    </div>
+    <div class="cards-conatiner" *ngIf="app.isIOS">
+        <app-ios-card></app-ios-card>
+    </div>
+</div>

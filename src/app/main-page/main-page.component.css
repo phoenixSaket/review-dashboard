@@ -1,0 +1,6 @@
+.main-page-container {
+    padding: 10px;
+    height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+}

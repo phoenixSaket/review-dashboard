@@ -1,4 +1,8 @@
-<app-sidebar></app-sidebar>
-<a routerLink="/reviews">Reviews</a>
-<a routerLink="/dashboard">Dashboard</a>
-<router-outlet></router-outlet>
+<div class="main-page-container">
+    <div class="side">
+        <app-sidebar [apps]="apps" (selectedApp)="appSelected($event)"></app-sidebar>
+    </div>
+    <div class="page">
+        <router-outlet></router-outlet>
+    </div>
+</div>

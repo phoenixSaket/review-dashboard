@@ -1,1 +1,12 @@
-<p>sidebar works!</p>
+<div class="sidebar-container">
+    Native Review Dashboard
+    <a routerLink="/reviews">Reviews</a>
+    <a routerLink="/dashboard">Dashboard</a>
+    <hr>
+    <div class="apps" *ngFor="let app of apps">
+        <div class="app" (click)="selectApp(app)" [ngClass]="app.isSelected ? 'active': ''">
+            <div class="name">{{app.altName}}</div>
+            <div class="rating">{{app.score.toFixed(2)}} / 5</div>
+        </div>
+    </div>
+</div>

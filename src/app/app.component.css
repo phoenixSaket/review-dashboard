@@ -1,0 +1,16 @@
+.main-page-container {
+    display: flex;
+}
+
+.side {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.page {
+    position: fixed;
+    left: 300px;
+    top: 0;
+    width: calc(100% - 300px)
+}

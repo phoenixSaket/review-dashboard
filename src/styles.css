@@ -4,3 +4,12 @@
     box-sizing: border-box;
     font-family: 'Cabin', sans-serif;
 }
+
+:root {
+    --light: #FFFFFF;
+    --dark: #F4F3EF;
+    --light-blue: #dfe5f3;
+    --navy: #4d4dac;
+    --white: #f5f5f5;
+    --accent: #eaeaea;
+}
