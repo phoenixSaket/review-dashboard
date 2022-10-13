@@ -1,7 +1,7 @@
 <div class="sidebar-container">
     Native Review Dashboard
-    <a routerLink="/reviews">Reviews</a>
-    <a routerLink="/dashboard">Dashboard</a>
+    <!-- <a routerLink="/reviews">Reviews</a>
+    <a routerLink="/dashboard">Dashboard</a> -->
     <hr>
     <div class="apps" *ngFor="let app of apps">
         <div class="app" (click)="selectApp(app)" [ngClass]="app.isSelected ? 'active': ''">

@@ -11,6 +11,7 @@ import { DataService } from '../data.service';
 export class MainPageComponent implements OnInit {
   public app: any = {};
   public reviews: any = {};
+  public noSelection: boolean = true;
 
   constructor(
     private data: DataService,
@@ -22,6 +23,9 @@ export class MainPageComponent implements OnInit {
     this.data.shouldUpdate.subscribe((shouldUpdate) => {
       if (shouldUpdate) {
         this.app = this.data.getSelectedApp();
+        if(Object.keys(this.app).length > 0) {
+          this.noSelection = false;
+        }
         let allReviews: any[] = [];
         if (this.app.isAndroid) {
           allReviews = this.android.getAndroidReviews();

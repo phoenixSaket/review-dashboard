@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.cards-conatiner {
+.cards-container {
     overflow-y: auto;
     height: calc(100vh - 60px);
 }
@@ -34,4 +34,13 @@
 
 .sort-container>div:nth-child(3) {
     width: 15%;
+}
+
+.no-selected {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

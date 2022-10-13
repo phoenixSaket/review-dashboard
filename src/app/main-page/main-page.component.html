@@ -9,10 +9,14 @@
             <div class="sort">Date</div>
         </div> -->
     </div>
-    <div class="cards-conatiner" *ngIf="app.isAndroid">
+    <div class="no-selected" *ngIf="noSelection">
+        No app selected.<br>
+        Please select an app to analyse reviews.    
+    </div>
+    <div class="cards-container" *ngIf="app.isAndroid">
         <app-android-card *ngFor="let review of reviews?.review?.data" [review]="review"></app-android-card>
     </div>
-    <div class="cards-conatiner" *ngIf="app.isIOS">
+    <div class="cards-container" *ngIf="app.isIOS">
         <div *ngFor="let data of reviews.reviews">
             <app-ios-card *ngFor="let detail of data.entry" [detail]="detail"></app-ios-card>
         </div>

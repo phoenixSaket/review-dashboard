@@ -2,11 +2,10 @@
     <!-- {{this.app | json}} -->
     <div *ngIf="app?.title == undefined">Please select an app.</div>
     <div class="app" *ngIf="app?.title != undefined">
-        <div class="app-name">{{app.title}} ({{(app.score).toFixed(2)}} / 5)</div>
-        <div class="ratings" *ngIf="app.isAndroid">{{app.ratings}} Ratings, {{app.reviews}} Reviews</div>
-        <div class="ratings" *ngIf="app.isIOS">{{app.reviews}} Ratings, {{iosReviews}} Reviews</div>
+        <div class="app-name">{{app.title}} ( Avg. Rating : {{(app.score).toFixed(2)}} / 5 )</div>
+        <div class="ratings">{{app.isAndroid ? app.reviews: iosReviews}} Reviews</div>
         <div class="histogram">
-            Ratings:
+            {{app.isAndroid ? app.ratings: app.reviews}} Ratings:
             <div class="rate">
                 <div class="title">1</div>
                 <div class="rating">{{histogram["1"]}}</div>
