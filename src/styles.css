@@ -5,6 +5,11 @@
     font-family: 'Cabin', sans-serif;
 }
 
+body {
+    font-size: 14px;
+
+}
+
 :root {
     --light: #FFFFFF;
     --dark: #F4F3EF;

@@ -1,12 +1,16 @@
 <div class="sidebar-container">
-    Native Review Dashboard
+    <div class="title">
+        Native Review Dashboard
+    </div>
     <!-- <a routerLink="/reviews">Reviews</a>
     <a routerLink="/dashboard">Dashboard</a> -->
-    <hr>
+    <!-- <hr> -->
     <div class="apps" *ngFor="let app of apps">
         <div class="app" (click)="selectApp(app)" [ngClass]="app.isSelected ? 'active': ''">
-            <div class="name">{{app.altName}}</div>
-            <div class="rating">{{app.score.toFixed(2)}} / 5</div>
+            <div class="inner">
+                <div class="name">{{app.altName}}</div>
+                <div class="rating">{{app.score.toFixed(2)}} / 5</div>
+            </div>
         </div>
     </div>
 </div>
