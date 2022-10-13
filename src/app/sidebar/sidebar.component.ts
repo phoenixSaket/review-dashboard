@@ -10,14 +10,14 @@ export class SidebarComponent implements OnInit {
   @Input() apps: any[] = [];
   @Output() selectedApp: EventEmitter<any> = new EventEmitter();
 
-  constructor(private data: DataService) {}
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
     this.data.shouldUpdate.subscribe(shouldUpdate => {
-      if(shouldUpdate) {
-        setTimeout(() =>{ 
+      if (shouldUpdate) {
+        setTimeout(() => {
           let app = this.data.getSelectedApp();
-          if(this.apps.find(x => x.altName == app.altName) != undefined) {
+          if (this.apps.find(x => x.altName == app.altName) != undefined) {
             this.apps.find(x => x.altName == app.altName).isSelected = true;
           }
         })

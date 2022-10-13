@@ -144,7 +144,9 @@ export class AppComponent {
       apps.push(app);
     });
 
+    apps.sort((a,b) => (a.altName > b.altName) ? 1 : ((b.altName > a.altName) ? -1 : 0))
     this.apps = apps;
+
   }
 
   getAppName(platform: string, app: string) {
