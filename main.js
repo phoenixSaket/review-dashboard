@@ -12,6 +12,7 @@ function createWindow() {
     });
 
     win.loadURL(`file://${__dirname}/dist/review-dashboard/index.html`);
+    win.removeMenu();
 
     // win.webContents.openDevTools();
 
