@@ -196,7 +196,6 @@ export class AppComponent {
   }
 
   appSelected(app: any) {
-    console.log('Selected App', app);
     this.data.setSelectedApp(app);
     this.data.shouldUpdate.next(true);
   }

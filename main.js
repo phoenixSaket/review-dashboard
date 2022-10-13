@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 
+app.commandLine.appendSwitch('ignore-certificate-errors')
+
 let win;
 
 function createWindow() {

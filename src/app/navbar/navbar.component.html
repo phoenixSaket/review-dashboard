@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<div class="navbar-container">
+    <!-- {{this.app | json}} -->
+    <div *ngIf="app?.title == undefined">Please select an app.</div>
+    <div class="app" *ngIf="app?.title != undefined">
+        <div class="app-name">{{app.title}} ({{(app.score).toFixed(2)}} / 5)</div>
+        <div class="ratings" *ngIf="app.isAndroid">{{app.ratings}} Ratings, {{app.reviews}} Reviews</div>
+        <div class="ratings" *ngIf="app.isIOS">{{app.reviews}} Ratings, {{iosReviews}} Reviews</div>
+        <div class="histogram">
+            Ratings:
+            <div class="rate">
+                <div class="title">1</div>
+                <div class="rating">{{histogram["1"]}}</div>
+            </div>
+            <div class="rate">
+                <div class="title">2</div>
+                <div class="rating">{{histogram["2"]}}</div>
+            </div>
+            <div class="rate">
+                <div class="title">3</div>
+                <div class="rating">{{histogram["3"]}}</div>
+            </div>
+            <div class="rate">
+                <div class="title">4</div>
+                <div class="rating">{{histogram["4"]}}</div>
+            </div>
+            <div class="rate">
+                <div class="title">5</div>
+                <div class="rating">{{histogram["5"]}}</div>
+            </div>
+        </div>
+    </div>
+</div>

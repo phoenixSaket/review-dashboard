@@ -1,1 +1,23 @@
-<p>ios-card works!</p>
+<div class="card-container">
+    <div class="left-container">
+        <div class="author">{{detail.author.name.label}}</div>
+        <div class="app">Version : {{detail["im:version"].label}}</div>
+    </div>
+    <div class="center-container">
+        <!-- <div class="title" [ngClass]="'bg-'+detail['im:rating'].label">{{detail.title.label}}</div> -->
+        <div class="rating">
+            <div class="rate" *ngFor="let rate of rating; let i = index;">
+                <span *ngIf="rate.isOn">&#9733;</span>
+                    <span *ngIf="!rate.isOn">&#9734;</span>
+
+                <!-- <span [ngClass]="'fg-'+(i+1)" *ngIf="rate.isOn">&#9733;</span>
+                <span [ngClass]="'fg-'+(i+1)" *ngIf="!rate.isOn">&#9734;</span> -->
+            </div>
+        </div>
+        <div class="title">{{detail.title.label}}</div>
+        <div class="content">{{detail.content.label}}</div>
+    </div>
+    <div class="right-container">
+        <div class="date">{{date}}</div>
+    </div>
+</div>

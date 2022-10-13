@@ -13,7 +13,6 @@ export class AndroidCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('check', this.review);
     this.setRating();
     this.setDate();
   }

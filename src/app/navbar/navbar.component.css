@@ -1,0 +1,44 @@
+.navbar-container {
+    width: 100%;
+    height: 60px;
+    background-color: var(--navy);
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.histogram {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.rate {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    border: 1px solid white;
+    width: 40px;
+}
+
+.rating {
+    font-size: 15px;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #0000006f;
+}
