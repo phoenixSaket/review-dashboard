@@ -2,29 +2,43 @@
     <!-- {{this.app | json}} -->
     <div *ngIf="app?.title == undefined">Please select an app.</div>
     <div class="app" *ngIf="app?.title != undefined">
-        <div class="app-name">{{app.title}} ( Avg. Rating : {{(app.score).toFixed(2)}} / 5 )</div>
-        <div class="ratings">{{app.isAndroid ? app.reviews: iosReviews}} Reviews</div>
+        <div class="outer-container">
+            <div class="app-container">
+                <div class="app-name">{{app.title}}</div>
+                <div class="app-ratings">Avg. Rating : {{(app.score).toFixed(2)}} / 5</div>
+            </div>
+
+            <div class="filter-container">
+                <div class="filter rating-filter">
+                    <button class="rate-button">1</button>
+                    <button class="rate-button">2</button>
+                    <button class="rate-button">3</button>
+                    <button class="rate-button">4</button>
+                    <button class="rate-button">5</button>
+                </div>
+                <div class="filter">
+                    <select class="select">
+                        <option value="-1">Select Version</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <select class="select">
+                        <option value="-1">Select Year</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
         <div class="histogram">
-            {{app.isAndroid ? app.ratings: app.reviews}} Ratings:
-            <div class="rate">
-                <div class="title">1</div>
-                <div class="rating">{{histogram["1"]}}</div>
+            <div class="rating-container">
+                <div class="ratings">{{app.isAndroid ? app.reviews: iosReviews}} Reviews</div>
+                <div class="ratings">{{app.isAndroid ? app.ratings: app.reviews}} Ratings</div>
             </div>
-            <div class="rate">
-                <div class="title">2</div>
-                <div class="rating">{{histogram["2"]}}</div>
-            </div>
-            <div class="rate">
-                <div class="title">3</div>
-                <div class="rating">{{histogram["3"]}}</div>
-            </div>
-            <div class="rate">
-                <div class="title">4</div>
-                <div class="rating">{{histogram["4"]}}</div>
-            </div>
-            <div class="rate">
-                <div class="title">5</div>
-                <div class="rating">{{histogram["5"]}}</div>
+            <div class="hist-inner">
+                <div *ngFor="let data of histogram">
+                    <app-rating [rate]="data[0]" [value]="data[1]"></app-rating>
+                </div>
             </div>
         </div>
     </div>

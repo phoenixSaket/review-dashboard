@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.value {
+    margin-right: 20px;
+}
+
+.no-vis {
+    opacity: 0.5;
+}

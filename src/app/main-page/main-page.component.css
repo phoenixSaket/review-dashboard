@@ -10,7 +10,7 @@
 
 .cards-container {
     overflow-y: auto;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 120px);
 }
 
 .sort-container {

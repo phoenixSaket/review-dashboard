@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
         } else {
           this.histogram = this.app.histogram;
         }
+        this.histogram = this.histogram ? Object.entries(this.histogram) : [];
       }
     })
   }

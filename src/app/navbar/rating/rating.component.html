@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="value">{{value}}</div>
+    <div *ngFor="let i of rating">
+        <span *ngIf="i.isOn">&#9733;</span>
+        <span *ngIf="!i.isOn" class="no-vis">&#9734;</span>
+    </div>
+</div>

@@ -10,6 +10,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AndroidCardComponent } from './android-card/android-card.component';
 import { IosCardComponent } from './ios-card/ios-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RatingComponent } from './navbar/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MainPageComponent,
     AndroidCardComponent,
     IosCardComponent,
-    DashboardComponent
+    DashboardComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
