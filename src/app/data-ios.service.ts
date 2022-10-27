@@ -12,17 +12,17 @@ export class DataIosService {
   constructor(private http: HttpClient) { }
 
   getAppDetails(app: string) {
-    let url = "http://localhost:3000/ios/app";
+    let url = "https://review-be.herokuapp.com/ios/app";
     return this.http.post(url, { name: parseInt(app) });
   }
 
   getAppReviews(app: string, page: number) {
-    let url = "http://localhost:3000/ios/review";
+    let url = "https://review-be.herokuapp.com/ios/review";
     return this.http.post(url, { name: app, page: page });
   }
 
   getAPPRatings(app: string) {
-    let url = "http://localhost:3000/ios/rating";
+    let url = "https://review-be.herokuapp.com/ios/rating";
     return this.http.post(url, { name: app });
   }
 

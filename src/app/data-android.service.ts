@@ -13,12 +13,12 @@ export class DataAndroidService {
   constructor(private http: HttpClient) { }
 
   getAppDetails(app: string) {
-    let url = "http://localhost:3000/android/app";
+    let url = "https://review-be.herokuapp.com/android/app";
     return this.http.post(url, { name: app });
   }
 
   getAppReviews(app:string) {
-    let url = "http://localhost:3000/android/review";
+    let url = "https://review-be.herokuapp.com/android/review";
     return this.http.post(url, { name: app });
   }
 
