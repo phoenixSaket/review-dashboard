@@ -95,12 +95,13 @@
     border-radius: 2px;
     outline: none;
     border: none;
+    background-color: var(--light-blue);
 }
 
 .rate-button {
     width: 40px;
     cursor: pointer;
-    background-color: white;
+    /* background-color: white; */
     color: #464646;
     font-weight: 700;
 }
