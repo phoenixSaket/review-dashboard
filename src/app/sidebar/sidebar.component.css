@@ -4,6 +4,7 @@
     width: 300px;
     gap: 10px;
     height: 100vh;
+    overflow-y: auto;
 }
 
 .app {

@@ -13,6 +13,11 @@
         No app selected.<br>
         Please select an app to analyse reviews.    
     </div>
+    <div class="filter-container">
+        <div class="filter">Version</div>
+        <div class="filter">Rating</div>
+        <div class="filter">Date</div>
+    </div>
     <div class="cards-container" *ngIf="app.isAndroid">
         <app-android-card *ngFor="let review of reviews?.review?.data" [review]="review"></app-android-card>
     </div>

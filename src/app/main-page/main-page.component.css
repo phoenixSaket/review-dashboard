@@ -44,3 +44,26 @@
     align-items: center;
     text-align: center;
 }
+
+.filter-container {
+    display: flex;
+    width: 100%;
+    padding: 0 15px;
+    background-color: #cfcfcf;
+}
+
+.filter {
+    padding: 10px 5px;
+}
+
+.filter:nth-child(1) {
+    width: 20%;
+}
+
+.filter:nth-child(2) {
+    width: 65%;
+}
+
+.filter:nth-child(3) {
+    width: 15%;
+}
