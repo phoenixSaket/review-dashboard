@@ -18,4 +18,9 @@ export class DataService {
     this.selectedApp = app;
   }
 
+  addIfNotAdded(entry: any, array: any[]) {
+    if(!array.includes(entry)) {array.push(entry)};
+    return array;
+  }
+
 }

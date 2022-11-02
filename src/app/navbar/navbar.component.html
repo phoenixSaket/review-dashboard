@@ -17,13 +17,15 @@
                     <button class="rate-button">5</button>
                 </div>
                 <div class="filter">
-                    <select class="select">
+                    <select class="select" (change)="versionSelect($event)">
                         <option value="-1">Select Version</option>
+                        <option *ngFor="let version of versions" [value]="version">{{version}}</option>
                     </select>
                 </div>
                 <div class="filter">
-                    <select class="select">
+                    <select class="select" (change)="yearSelect($event)">
                         <option value="-1">Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{year}}</option>
                     </select>
                 </div>
             </div>

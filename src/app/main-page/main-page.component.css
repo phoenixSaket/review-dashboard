@@ -11,6 +11,10 @@
 .cards-container {
     overflow-y: auto;
     height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eaeaea;
 }
 
 .sort-container {
@@ -47,13 +51,26 @@
 
 .filter-container {
     display: flex;
-    width: 100%;
-    padding: 0 15px;
+    justify-content: center;
+    background-color: #eaeaea;
+    width: calc(100% - 5px);
+    padding-bottom: 2px;
+}
+
+.filter-container-inner {
+    display: flex;
     background-color: #cfcfcf;
+    max-width: 1440px;
+    width: calc(100% - 10px);
+    padding: 5px;
 }
 
 .filter {
-    padding: 10px 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
 }
 
 .filter:nth-child(1) {
@@ -66,4 +83,31 @@
 
 .filter:nth-child(3) {
     width: 15%;
+}
+
+.arrow {
+    margin-left: 5px;
+    margin-top: -2px;
+}
+
+.filter-search {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.search-div {
+    width: 50%;
+}
+
+.search {
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding: 10px 2px;
+    width: 100%;
+}
+
+.number {
+    padding-right: 10px;
 }

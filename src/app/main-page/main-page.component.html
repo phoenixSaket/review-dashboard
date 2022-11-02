@@ -1,29 +1,42 @@
 <div class="main-page-container">
     <div class="header">
-        <app-navbar></app-navbar>
-        <!-- <div class="sort-container">
-            <div class="sort">Version</div>
-            <div class="search">
-                <input placeholder="Search by keyword" type="text" class="search" />
-            </div>
-            <div class="sort">Date</div>
-        </div> -->
+        <app-navbar [versions]="versions" [years]="years" (versionSelected)="versionSelect($event)" (yearSelected)="yearSelect($event)"></app-navbar>
     </div>
     <div class="no-selected" *ngIf="noSelection">
         No app selected.<br>
-        Please select an app to analyse reviews.    
+        Please select an app to analyse reviews.
     </div>
     <div class="filter-container">
-        <div class="filter">Version</div>
-        <div class="filter">Rating</div>
-        <div class="filter">Date</div>
+        <div class="filter-container-inner">
+            <div class="filter" (click)="sort('version')"><span>Version</span><span class="arrow"
+                    *ngIf="versionSorted.sorted">{{versionSorted.type == 'A' ? '&#8595;': '&#8593;'}}</span></div>
+            <div class="filter">
+                <div class="filter-search" (click)="sort('rating')">
+                    <div>
+                        <span>Rating</span>
+                        <span class="arrow" *ngIf="ratingSorted.sorted">{{ratingSorted.type == 'A' ? '&#8595;':
+                            '&#8593;'}}</span>
+                    </div>
+                    <div class="number" *ngIf="searched">
+                        <b>{{reviews.length}}</b> matching reviews
+                    </div>
+                </div>
+                <div class="search-div">
+                    <input type="text" class="search" placeholder="Search by keyword" (keyup)="searchAndFilter($event)">
+                </div>
+            </div>
+            <div class="filter" (click)="sort('date')"><span>Date</span><span class="arrow"
+                    *ngIf="dateSorted.sorted">{{dateSorted.type == 'A' ? '&#8595;': '&#8593;'}}</span></div>
+        </div>
     </div>
     <div class="cards-container" *ngIf="app.isAndroid">
-        <app-android-card *ngFor="let review of reviews?.review?.data" [review]="review"></app-android-card>
+        <div>
+            <app-android-card *ngFor="let review of reviews" [review]="review"></app-android-card>
+        </div>
     </div>
     <div class="cards-container" *ngIf="app.isIOS">
-        <div *ngFor="let data of reviews.reviews">
-            <app-ios-card *ngFor="let detail of data.entry" [detail]="detail"></app-ios-card>
+        <div>
+            <app-ios-card *ngFor="let detail of reviews" [detail]="detail"></app-ios-card>
         </div>
     </div>
 </div>

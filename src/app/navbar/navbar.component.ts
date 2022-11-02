@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataIosService } from '../data-ios.service';
 import { DataService } from '../data.service';
 
@@ -8,6 +8,12 @@ import { DataService } from '../data.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  @Input() versions: any[] = [];
+  @Input() years: any[] = [];
+
+  @Output() versionSelected: EventEmitter<any> = new EventEmitter();
+  @Output() yearSelected: EventEmitter<any> = new EventEmitter();
 
   public app: any = {};
   public iosReviews: number = 0;
@@ -41,4 +47,11 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  versionSelect(event: any) {
+    this.versionSelected.emit(event.target.value);
+  }
+
+  yearSelect(event: any) {
+    this.yearSelected.emit(event.target.value);
+  }
 }
