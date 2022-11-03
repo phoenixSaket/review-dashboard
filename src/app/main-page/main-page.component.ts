@@ -303,13 +303,14 @@ export class MainPageComponent implements OnInit {
   }
 
   ratingSelect(res: any[]) {
+    console.log(res);
     const platform = this.app.isAndroid ? 'android' : 'ios';
 
     let temp: any[] = [];
     this.backup.forEach((data: any) => {
       res.forEach((rating: any) => {
         if(platform == "ios") {
-          if(rating.isSelected && data["im:version"].label == rating.value) {
+          if(rating.isSelected && data["im:rating"].label == rating.value) {
             temp.push(data);
           }
         } else {
