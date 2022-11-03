@@ -43,6 +43,8 @@ export class MainPageComponent implements OnInit {
           allReviews = this.ios.getIOSReviews();
           this.reviews = allReviews.find((x) => x.app == this.app.id);
         }
+
+        // IOS
         if (this.app.isIOS) {
           let temp: any[] = [];
           if (Object.keys(this.reviews.reviews).length > 0) {
@@ -69,9 +71,26 @@ export class MainPageComponent implements OnInit {
             this.dateSorted.sorted = true;
           }
         } else {
+
+          // Android
           if (Object.keys(this.reviews?.review?.data).length > 0) {
             this.reviews = this.reviews.review.data;
           }
+          this.reviews.sort((a: any, b: any) => {
+            return new Date(a.date) > new Date(b.date)
+              ? -1
+              : 1;
+          });
+          this.reviews.forEach((rev: any) => {
+            this.versions = this.data.addIfNotAdded(
+              (rev.version ? rev.version : "NA"),
+              this.versions
+            );
+            const year = new Date(rev.date).getFullYear();
+            this.years = this.data.addIfNotAdded(year, this.years);
+          });
+          console.log({ year: this.years, versions: this.versions });
+          this.dateSorted.sorted = true;
         }
       }
       this.backup = this.reviews;
@@ -235,7 +254,8 @@ export class MainPageComponent implements OnInit {
   }
 
   versionSelect(event: any) {
-    const res = event;
+    let res = event;
+    console.log(this.reviews);
     const platform = this.app.isAndroid ? 'android' : 'ios';
     let temp: any[] = [];
     if (platform == 'ios') {
@@ -245,6 +265,12 @@ export class MainPageComponent implements OnInit {
         }
       });
     } else {
+      if(res == "NA") {res = null}
+      this.backup.forEach((data: any) => {
+        if (data.version == res) {
+          temp.push(data);
+        }
+      });
     }
     this.reviews = temp;
 
@@ -264,10 +290,35 @@ export class MainPageComponent implements OnInit {
         }
       });
     } else {
+      this.backup.forEach((data: any)=> {
+        if (new Date(data.date).getFullYear() == res) {
+          temp.push(data);
+        }
+      })
     }
     this.reviews = temp;
     if (res == -1) {
       this.reviews = this.backup;
     }
+  }
+
+  ratingSelect(res: any[]) {
+    const platform = this.app.isAndroid ? 'android' : 'ios';
+
+    let temp: any[] = [];
+    this.backup.forEach((data: any) => {
+      res.forEach((rating: any) => {
+        if(platform == "ios") {
+          if(rating.isSelected && data["im:version"].label == rating.value) {
+            temp.push(data);
+          }
+        } else {
+          if(rating.isSelected && data.score == rating.value) {
+            temp.push(data);
+          }
+        }
+      });
+    });
+    this.reviews = temp;
   }
 }

@@ -1,6 +1,6 @@
 <div class="main-page-container">
     <div class="header">
-        <app-navbar [versions]="versions" [years]="years" (versionSelected)="versionSelect($event)" (yearSelected)="yearSelect($event)"></app-navbar>
+        <app-navbar [versions]="versions" [years]="years" (versionSelected)="versionSelect($event)" (yearSelected)="yearSelect($event)" (ratingSelected)="ratingSelect($event)"></app-navbar>
     </div>
     <div class="no-selected" *ngIf="noSelection">
         No app selected.<br>

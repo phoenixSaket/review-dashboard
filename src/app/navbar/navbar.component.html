@@ -10,11 +10,10 @@
 
             <div class="filter-container">
                 <div class="filter rating-filter">
-                    <button class="rate-button">1</button>
-                    <button class="rate-button">2</button>
-                    <button class="rate-button">3</button>
-                    <button class="rate-button">4</button>
-                    <button class="rate-button">5</button>
+                    <button *ngFor="let rate of ratings" class="rate-button" (click)="ratingSelect(rate)">
+                        <div class="check-box">{{rate.isSelected ? '&#10003;' : ''}}</div>
+                        <div>{{rate.value}}</div>
+                    </button>
                 </div>
                 <div class="filter">
                     <select class="select" (change)="versionSelect($event)">
