@@ -17,6 +17,7 @@ body {
     --navy: #4d4dac;
     --white: #f5f5f5;
     --accent: #eaeaea;
+    --animation-time : 0.7s;
 }
 
 ::-webkit-scrollbar {

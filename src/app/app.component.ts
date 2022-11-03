@@ -25,7 +25,7 @@ export class AppComponent {
   constructor(
     private android: DataAndroidService,
     private ios: DataIosService,
-    private data: DataService
+    public data: DataService
   ) {}
 
   ngOnInit() {

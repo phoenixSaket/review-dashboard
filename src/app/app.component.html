@@ -2,7 +2,7 @@
     <div class="side">
         <app-sidebar [apps]="apps" (selectedApp)="appSelected($event)"></app-sidebar>
     </div>
-    <div class="page">
+    <div class="page" [ngClass]="data.sideOpened() ? 'open-side' : 'close-side'">
         <router-outlet></router-outlet>
     </div>
 </div>

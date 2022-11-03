@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
   public shouldUpdate: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public selectedApp: any = {};
+  public isSideOpen: boolean = true;
 
   constructor() { }
 
@@ -21,6 +22,14 @@ export class DataService {
   addIfNotAdded(entry: any, array: any[]) {
     if(!array.includes(entry)) {array.push(entry)};
     return array;
+  }
+
+  sideOpened() {
+    return this.isSideOpen;
+  }
+
+  setSide(value: boolean) {
+    this.isSideOpen = value;
   }
 
 }
