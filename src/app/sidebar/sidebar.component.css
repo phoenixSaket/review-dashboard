@@ -126,3 +126,13 @@
         opacity: 0;
     }
 }
+
+@media (max-width: 767px) {
+    .open-side {
+        width: 100vw;
+    }
+
+    .mini-side-closed {
+        transition-delay: 0.25s;
+    }
+}

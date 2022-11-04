@@ -12,3 +12,13 @@
 .no-vis {
     opacity: 0.5;
 }
+
+@media (max-width: 500px) {    
+    .value {
+        margin-right: 5px;
+    }
+
+    .container {
+        font-size: 12px;
+    }
+}

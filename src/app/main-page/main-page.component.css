@@ -111,3 +111,13 @@
 .number {
     padding-right: 10px;
 }
+
+@media (max-width: 767px) {
+    .filter-search {
+        width: 30%;
+    }
+
+    .search-div {
+        width: 70%;
+    }
+}

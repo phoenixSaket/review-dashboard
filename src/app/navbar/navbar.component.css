@@ -129,3 +129,36 @@
     text-shadow: 1px 1px 2px grey;
     border-radius: 3px;
 }
+
+@media (max-width: 767px) {
+    .histogram {
+        gap: 5px;
+        margin: 0;
+        flex-direction: column-reverse;
+    }
+
+    .filter-container {
+        padding: 0px;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 5px;
+        justify-content: center;
+    }
+
+    .navbar-container {
+        height: unset;
+        padding: 10px 5px;
+    }
+
+    .outer-container {
+        margin-right: 5px;
+    }
+
+    .app-container {
+        font-size: 16px;
+    }
+
+    .app-ratings {
+        font-size: 14px;
+    }
+}

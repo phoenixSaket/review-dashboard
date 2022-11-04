@@ -26,3 +26,32 @@
     width: calc(100% - 50px);
     transition-duration: var(--animation-time);
 }
+
+@media (max-width: 767px) {
+    .open-side {
+        left: 300px;
+        width: calc(100% - 300px);
+        opacity: 0;
+        transition-duration: var(--animation-time);
+    }
+    
+    .close-side {
+        left: 50px;
+        width: calc(100% - 50px);
+        opacity: 1;
+        transition-duration: var(--animation-time);
+    }
+
+    .page {
+        position: fixed;
+        left: 50px;
+        top: 0;
+        width: calc(100% - 50px);
+        z-index: -1;
+    }
+
+    .side {
+        z-index: 0;
+        background-color: #fafafa;
+    }
+}
