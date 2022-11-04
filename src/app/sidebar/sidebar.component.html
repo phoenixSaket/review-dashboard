@@ -6,7 +6,8 @@
         <span class="icon-bar"></span>
     </div>
     <div class="app-name" *ngIf="!isOpen && this.appName?.title !== ''">
-        {{this.appName.altName}}
+        <div>{{this.appName.altName}}</div>
+        <div class="open-side-bar">Click to change selected app.</div>
     </div>
 </div>
 <div class="sidebar-container" [ngClass]="isOpen ? 'open-side': 'close-side'">

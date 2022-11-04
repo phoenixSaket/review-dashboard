@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
       app.isSelected = false;
     });
     appSelected.isSelected = true;
+    this.toggleSideBar();
     this.selectedApp.emit(appSelected);
   }
 

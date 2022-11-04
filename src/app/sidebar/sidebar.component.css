@@ -107,6 +107,13 @@
     /* text-orientation: upright; */
     text-transform: uppercase;
     transform: rotate(180deg);
+    flex-direction: column;
+}
+
+.open-side-bar {
+    text-transform: none;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 @keyframes open {
@@ -134,5 +141,9 @@
 
     .mini-side-closed {
         transition-delay: 0.25s;
+    }
+
+    .navbar-toggle {
+        display: none;
     }
 }
