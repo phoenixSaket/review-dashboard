@@ -58,7 +58,7 @@ export class AppComponent {
         values.push(JSON.parse(data.result));
         this.ios.setIOSApps(values);
         // console.log('IOS Apps', this.ios.getIOSApps());
-        this.data?.shouldUpdate.next(true);
+        this.data.shouldUpdate.next(true);
       });
 
       this.getMaxPages(app);
@@ -68,7 +68,7 @@ export class AppComponent {
         values.push({ app: app, ratings: JSON.parse(data.result) });
         this.ios.setIOSRatings(values);
         // console.log('IOS Ratings', this.ios.getIOSRatings());
-        this.data?.shouldUpdate.next(true);
+        this.data.shouldUpdate.next(true);
       });
     });
   }

@@ -47,50 +47,52 @@ export class MainPageComponent implements OnInit {
         // IOS
         if (this.app.isIOS) {
           let temp: any[] = [];
-          if (Object.keys(this.reviews.reviews).length > 0) {
+          if (Object.keys(this.reviews.reviews || []).length > 0) {
             this.reviews.reviews.forEach((rev: any) => {
               rev.entry.forEach((ent: any) => {
                 temp.push(ent);
               });
             });
             this.reviews = temp;
+            if(this.reviews.length > 0) {
+              this.reviews.sort((a: any, b: any) => {
+                return new Date(a.updated.label) > new Date(b.updated.label)
+                  ? -1
+                  : 1;
+              });
+              this.reviews.forEach((rev: any) => {
+                this.versions = this.data.addIfNotAdded(
+                  rev['im:version'].label,
+                  this.versions
+                );
+                const year = new Date(rev.updated.label).getFullYear();
+                this.years = this.data.addIfNotAdded(year, this.years);
+              });
+              this.dateSorted.sorted = true;
+            }
+          }
+        } else {
+
+          // Android
+          if (Object.keys(this.reviews?.review?.data  || []).length > 0) {
+            this.reviews = this.reviews.review.data;
+          }
+          if(this.reviews.length > 0) {
             this.reviews.sort((a: any, b: any) => {
-              return new Date(a.updated.label) > new Date(b.updated.label)
+              return new Date(a.date) > new Date(b.date)
                 ? -1
                 : 1;
             });
             this.reviews.forEach((rev: any) => {
               this.versions = this.data.addIfNotAdded(
-                rev['im:version'].label,
+                (rev.version ? rev.version : "NA"),
                 this.versions
               );
-              const year = new Date(rev.updated.label).getFullYear();
+              const year = new Date(rev.date).getFullYear();
               this.years = this.data.addIfNotAdded(year, this.years);
             });
-            console.log({ year: this.years, versions: this.versions });
             this.dateSorted.sorted = true;
           }
-        } else {
-
-          // Android
-          if (Object.keys(this.reviews?.review?.data).length > 0) {
-            this.reviews = this.reviews.review.data;
-          }
-          this.reviews.sort((a: any, b: any) => {
-            return new Date(a.date) > new Date(b.date)
-              ? -1
-              : 1;
-          });
-          this.reviews.forEach((rev: any) => {
-            this.versions = this.data.addIfNotAdded(
-              (rev.version ? rev.version : "NA"),
-              this.versions
-            );
-            const year = new Date(rev.date).getFullYear();
-            this.years = this.data.addIfNotAdded(year, this.years);
-          });
-          console.log({ year: this.years, versions: this.versions });
-          this.dateSorted.sorted = true;
         }
       }
       this.backup = this.reviews;
@@ -255,7 +257,6 @@ export class MainPageComponent implements OnInit {
 
   versionSelect(event: any) {
     let res = event;
-    console.log(this.reviews);
     const platform = this.app.isAndroid ? 'android' : 'ios';
     let temp: any[] = [];
     if (platform == 'ios') {
@@ -303,7 +304,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ratingSelect(res: any[]) {
-    console.log(res);
     const platform = this.app.isAndroid ? 'android' : 'ios';
 
     let temp: any[] = [];

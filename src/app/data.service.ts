@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  public shouldUpdate: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public shouldUpdate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public selectedApp: any = {};
   public isSideOpen: boolean = true;
 
