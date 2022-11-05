@@ -20,12 +20,13 @@ export class MainPageComponent implements OnInit {
   public searched: boolean = false;
   public versions: any[] = [];
   public years: any[] = [];
+  public pageHeight : string = "";
 
   constructor(
     private data: DataService,
     private android: DataAndroidService,
     private ios: DataIosService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.data.shouldUpdate.subscribe((shouldUpdate) => {
@@ -54,7 +55,7 @@ export class MainPageComponent implements OnInit {
               });
             });
             this.reviews = temp;
-            if(this.reviews.length > 0) {
+            if (this.reviews.length > 0) {
               this.reviews.sort((a: any, b: any) => {
                 return new Date(a.updated.label) > new Date(b.updated.label)
                   ? -1
@@ -74,10 +75,10 @@ export class MainPageComponent implements OnInit {
         } else {
 
           // Android
-          if (Object.keys(this.reviews?.review?.data  || []).length > 0) {
+          if (Object.keys(this.reviews?.review?.data || []).length > 0) {
             this.reviews = this.reviews.review.data;
           }
-          if(this.reviews.length > 0) {
+          if (this.reviews.length > 0) {
             this.reviews.sort((a: any, b: any) => {
               return new Date(a.date) > new Date(b.date)
                 ? -1
@@ -96,7 +97,13 @@ export class MainPageComponent implements OnInit {
         }
       }
       this.backup = this.reviews;
+      setTimeout(() => {
+        let header = document.getElementsByClassName("header")[0].clientHeight;
+        let filter = document.getElementById("filter")?.clientHeight;
+        this.pageHeight = "" + (screen.height - (header + (filter ? filter : 0))) + "px";
+      }, 100);
     });
+
   }
 
   sort(type: string) {
@@ -110,8 +117,8 @@ export class MainPageComponent implements OnInit {
                 ? -1
                 : 1
               : a['im:rating'].label > b['im:rating'].label
-              ? 1
-              : -1;
+                ? 1
+                : -1;
           });
           this.ratingSorted.type = this.ratingSorted.type == 'A' ? 'D' : 'A';
           this.ratingSorted.sorted = true;
@@ -125,8 +132,8 @@ export class MainPageComponent implements OnInit {
                 ? -1
                 : 1
               : new Date(a.updated.label) > new Date(b.updated.label)
-              ? 1
-              : -1;
+                ? 1
+                : -1;
           });
           this.dateSorted.type = this.dateSorted.type == 'A' ? 'D' : 'A';
           this.dateSorted.sorted = true;
@@ -158,8 +165,8 @@ export class MainPageComponent implements OnInit {
                 ? -1
                 : 1
               : a.score > b.score
-              ? 1
-              : -1;
+                ? 1
+                : -1;
           });
           this.ratingSorted.type = this.ratingSorted.type == 'A' ? 'D' : 'A';
           this.ratingSorted.sorted = true;
@@ -173,8 +180,8 @@ export class MainPageComponent implements OnInit {
                 ? -1
                 : 1
               : new Date(a.date) > new Date(b.date)
-              ? 1
-              : -1;
+                ? 1
+                : -1;
           });
           this.dateSorted.type = this.dateSorted.type == 'A' ? 'D' : 'A';
           this.dateSorted.sorted = true;
@@ -266,7 +273,7 @@ export class MainPageComponent implements OnInit {
         }
       });
     } else {
-      if(res == "NA") {res = null}
+      if (res == "NA") { res = null }
       this.backup.forEach((data: any) => {
         if (data.version == res) {
           temp.push(data);
@@ -291,7 +298,7 @@ export class MainPageComponent implements OnInit {
         }
       });
     } else {
-      this.backup.forEach((data: any)=> {
+      this.backup.forEach((data: any) => {
         if (new Date(data.date).getFullYear() == res) {
           temp.push(data);
         }
@@ -309,12 +316,12 @@ export class MainPageComponent implements OnInit {
     let temp: any[] = [];
     this.backup.forEach((data: any) => {
       res.forEach((rating: any) => {
-        if(platform == "ios") {
-          if(rating.isSelected && data["im:rating"].label == rating.value) {
+        if (platform == "ios") {
+          if (rating.isSelected && data["im:rating"].label == rating.value) {
             temp.push(data);
           }
         } else {
-          if(rating.isSelected && data.score == rating.value) {
+          if (rating.isSelected && data.score == rating.value) {
             temp.push(data);
           }
         }

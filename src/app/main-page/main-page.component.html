@@ -6,7 +6,7 @@
         No app selected.<br>
         Please select an app to analyse reviews.
     </div>
-    <div class="filter-container">
+    <div class="filter-container" id="filter">
         <div class="filter-container-inner">
             <div class="filter" (click)="sort('version')"><span>Version</span><span class="arrow"
                     *ngIf="versionSorted.sorted">{{versionSorted.type == 'A' ? '&#8595;': '&#8593;'}}</span></div>
@@ -29,12 +29,12 @@
                     *ngIf="dateSorted.sorted">{{dateSorted.type == 'A' ? '&#8595;': '&#8593;'}}</span></div>
         </div>
     </div>
-    <div class="cards-container" *ngIf="app.isAndroid">
+    <div class="cards-container" *ngIf="app.isAndroid" [ngStyle]="{height: pageHeight}">
         <div>
             <app-android-card *ngFor="let review of reviews" [review]="review"></app-android-card>
         </div>
     </div>
-    <div class="cards-container" *ngIf="app.isIOS">
+    <div class="cards-container" *ngIf="app.isIOS" [ngStyle]="{height: pageHeight}">
         <div>
             <app-ios-card *ngFor="let detail of reviews" [detail]="detail"></app-ios-card>
         </div>

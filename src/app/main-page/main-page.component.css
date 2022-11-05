@@ -10,7 +10,7 @@
 
 .cards-container {
     overflow-y: auto;
-    height: calc(100vh - 120px);
+    /* height: calc(100vh - 120px); */
     display: flex;
     flex-direction: column;
     align-items: center;
