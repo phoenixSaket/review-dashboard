@@ -76,7 +76,9 @@ export class AppComponent {
 
     this.ios.appUpdate.subscribe((data: boolean) => {
       if (data) {
-        this.iosApps = this.ios.additionalApps;
+        this.ios.iosAppsDefault.push(this.ios.additionalApps[0]);
+        this.iosApps = JSON.parse(JSON.stringify(this.ios.additionalApps));
+        this.ios.additionalApps.pop();
 
         this.iosApps.forEach((app) => {
           this.ios.getAppDetails(app).subscribe((data: any) => {
@@ -102,7 +104,9 @@ export class AppComponent {
 
     this.android.appUpdate.subscribe((data: boolean) => {
       if (data) {
-        this.androidApps = this.android.additionalApps;
+        this.android.androidAppsDefault.push(this.android.additionalApps[0]);
+        this.androidApps = JSON.parse(JSON.stringify(this.android.additionalApps));
+        this.android.additionalApps.pop();
 
         this.androidApps.forEach((app) => {
           this.android.getAppDetails(app).subscribe((data: any) => {
