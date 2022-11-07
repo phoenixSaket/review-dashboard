@@ -5,6 +5,7 @@
     width: 100%;
     background-color: var(--dark);
     overflow-y: auto;
+    height: 100vh;
 }
 
 .search-top-container {
@@ -44,7 +45,7 @@ button {
     width: 100%;
     max-width: 1024px;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 20px 0;
     gap: 10px;
 }
 

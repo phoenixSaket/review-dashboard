@@ -20,18 +20,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private android: DataAndroidService, private ios: DataIosService, private data: DataService) { }
 
-  ngOnInit(): void {
-
-    setTimeout(() => {
-      const a = document.getElementsByClassName("title-search")[0].clientHeight || 0;
-      const b = document.getElementsByClassName("search-top-container")[0].clientHeight || 0;
-      const c = document.getElementsByClassName("search-box")[0].clientHeight || 0;
-
-      this.pageHeight = "" + (screen.height - (a + b + c) - 30) + "px";
-
-      console.log(this.pageHeight)
-    }, 200);
-  }
+  ngOnInit(): void {}
 
   inputValue(event: any, type: string) {
     const value = event.target.value;
