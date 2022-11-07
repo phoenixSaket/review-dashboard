@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataService {
   public shouldUpdate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public sideBarBehavior: BehaviorSubject<any> = new BehaviorSubject<any>({bool: false, app: {}});
   public selectedApp: any = {};
   public isSideOpen: boolean = true;
 
@@ -30,6 +31,10 @@ export class DataService {
 
   setSide(value: boolean) {
     this.isSideOpen = value;
+  }
+
+  toggleSideBar() {
+    this.sideBarBehavior.next({bool: true});
   }
 
 }

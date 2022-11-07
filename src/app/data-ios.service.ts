@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataIosService {
   public iosAppsDefault = ['584785907', '1112137390', '1337168006', '1337166340', '1340456041'];
+  public additionalApps: any[] = [];
   private iosApps: any[] = [];
   private iosReviews: any[] = [];
   private iosRatings: any[] = [];
@@ -59,7 +60,7 @@ export class DataIosService {
   }
 
   public addIOSApp(app: string) {
-    this.iosAppsDefault.push(app);
+    this.additionalApps.push(app);
     this.appUpdate.next(true);
   }
 }

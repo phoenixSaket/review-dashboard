@@ -27,6 +27,13 @@ export class SidebarComponent implements OnInit {
           }
         })
       }
+    });
+
+    this.data.sideBarBehavior.subscribe(data=> {
+      if(data.bool) {
+        this.toggleSideBar();
+        this.router.navigate(["/reviews"]);
+      }
     })
   }
 

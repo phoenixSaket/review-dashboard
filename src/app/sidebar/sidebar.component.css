@@ -7,6 +7,12 @@
     overflow-y: auto;
 }
 
+.sidebar-container > a {
+    background-color: darkcyan;
+    padding: 10px;
+    color: var(--light);
+}
+
 .app {
     display: flex;
     background-color: #f2f2f2;

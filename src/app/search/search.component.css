@@ -23,6 +23,7 @@ input, button, select, option {
     outline: none;
     box-shadow: 1px 1px 5px 0.5px grey;
     width: 200px;
+    cursor: pointer;
 }
 
 button {
@@ -53,6 +54,7 @@ button {
     justify-content: center;
     height: 140px;
     width: 320px;
+    cursor: pointer;
 }
 
 .image {

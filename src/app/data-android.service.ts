@@ -14,6 +14,7 @@ export class DataAndroidService {
     'com.ibxtpa.iamobile',
     'com.ahc.ahcmobile'
   ];
+  public additionalApps: any[] = [];
   private androidApps: any[] = [];
   private androidReviews: any[] = [];
   private androidRatings: any[] = [];
@@ -61,7 +62,7 @@ export class DataAndroidService {
   }
 
   public addAndroidApp(app: string) {
-    this.androidAppsDefault.push(app);
+    this.additionalApps.push(app);
     this.appUpdate.next(true);
   }
 }

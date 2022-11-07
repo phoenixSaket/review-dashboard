@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAndroidService } from '../data-android.service';
 import { DataIosService } from '../data-ios.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   public pageHeight: string = "";
   public options: any[] = [{ name: "Android", isSelected: true }, { name: "IOS", isSelected: false }]
 
-  constructor(private android: DataAndroidService, private ios: DataIosService) { }
+  constructor(private android: DataAndroidService, private ios: DataIosService, private data: DataService) { }
 
   ngOnInit(): void {
 
@@ -93,6 +94,7 @@ export class SearchComponent implements OnInit {
 
   addApp(app: any) {
     let selected = "";
+    this.data.toggleSideBar();
 
     this.options.forEach(opt => {
       if (opt.isSelected) { selected = opt.name; }
