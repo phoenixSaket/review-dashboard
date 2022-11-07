@@ -30,7 +30,7 @@ export class DataIosService {
   }
 
   searchApp(term: string, num: number, lang: string, price: string) {
-    let url = "http://localhost:3001/ios/search";
+    let url = "https://review-be.herokuapp.com/ios/search";
     return this.http.post(url, { term: term, num: num, lang: lang, price: price })
   }
 
