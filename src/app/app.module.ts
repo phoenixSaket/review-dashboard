@@ -11,6 +11,7 @@ import { AndroidCardComponent } from './android-card/android-card.component';
 import { IosCardComponent } from './ios-card/ios-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RatingComponent } from './navbar/rating/rating.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RatingComponent } from './navbar/rating/rating.component';
     AndroidCardComponent,
     IosCardComponent,
     DashboardComponent,
-    RatingComponent
+    RatingComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

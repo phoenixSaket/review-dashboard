@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,9 +12,9 @@ export class SidebarComponent implements OnInit {
   @Output() selectedApp: EventEmitter<any> = new EventEmitter();
 
   public isOpen: boolean = true;
-  public appName: any = {}; 
+  public appName: any = {};
 
-  constructor(public data: DataService) { }
+  constructor(public data: DataService, private router:Router) { }
 
   ngOnInit(): void {
     this.data.shouldUpdate.subscribe(shouldUpdate => {
@@ -35,6 +36,7 @@ export class SidebarComponent implements OnInit {
     });
     appSelected.isSelected = true;
     this.toggleSideBar();
+    this.router.navigate(["/reviews"]);
     this.selectedApp.emit(appSelected);
   }
 

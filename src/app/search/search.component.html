@@ -1,0 +1,29 @@
+<div class="search-page-container" [ngStyle]="{height: pageHeight}">
+    <div class="title title-search">Add Your App</div>
+        <div class="search-top-container" id="top">
+            <input type="text" placeholder="App / Developer" [value]="this.term" (change)="inputValue($event, 'term')">
+            <select (change)="optionChanged($event)">
+                <option *ngFor="let app of options" [selected]="app.isSelected">{{app.name}}</option>
+            </select>
+            <button (click)="search()" class="search-box">Search</button>
+        </div>
+    <div class="search-result-container">
+        <div class="app-container" *ngFor="let app of results" (click)="addApp(app)">
+            <div class="details">
+                <div class="inner-container">
+                    <div class="image">
+                        <img [src]="app.icon" class="icon">
+                    </div>
+                    <div class="inner-details">
+                        <div class="bold name">{{app.title}}</div>
+                        <div class="grey">{{app.name}}</div>
+                        <div class="grey">{{app.appId}}</div>
+                        <div class="grey italic">{{app.developer}}</div>
+                        <div class="grey italic bold">{{(app.score).toFixed(2)}} / 5</div>
+                    </div>
+                </div>
+                <!-- <div class="summary" [innerHTML]="app.summary"></div> -->
+            </div>
+        </div>
+    </div>
+</div>

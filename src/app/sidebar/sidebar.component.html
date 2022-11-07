@@ -14,9 +14,10 @@
     <div class="title">
         Native Review Dashboard
     </div>
-    <!-- <a routerLink="/reviews">Reviews</a>
-    <a routerLink="/dashboard">Dashboard</a> -->
-    <!-- <hr> -->
+    <a routerLink="/reviews">Reviews</a>
+    <!-- <a routerLink="/dashboard">Dashboard</a> -->
+    <a routerLink="/search">Search</a>
+    <hr>
     <div class="apps" *ngFor="let app of apps">
         <div class="app" (click)="selectApp(app)" [ngClass]="app.isSelected ? 'active': ''">
             <div class="inner">
