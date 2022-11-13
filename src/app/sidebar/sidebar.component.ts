@@ -13,10 +13,12 @@ export class SidebarComponent implements OnInit {
 
   public isOpen: boolean = true;
   public appName: any = {};
+  screen: any;
 
   constructor(public data: DataService, private router:Router) { }
 
   ngOnInit(): void {
+    this.screen = screen;
     this.data.shouldUpdate.subscribe(shouldUpdate => {
       if (shouldUpdate) {
         setTimeout(() => {
@@ -48,7 +50,9 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSideBar() {
-    this.isOpen = !this.isOpen;
-    this.data.setSide(this.isOpen);
+    if(screen.width < 768) {
+      this.isOpen = !this.isOpen;
+      this.data.setSide(this.isOpen);
+    }
   }
 }

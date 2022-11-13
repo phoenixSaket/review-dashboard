@@ -83,7 +83,9 @@ export class AppComponent {
         this.iosApps.forEach((app) => {
           this.ios.getAppDetails(app).subscribe((data: any) => {
             let values = this.ios.getIOSApps();
-            values = this.pushIfNotPresent(JSON.parse(data.result), values);
+            let newVal = JSON.parse(data.result);
+            newVal["isAdd"] = true;
+            values = this.pushIfNotPresent(newVal, values);
             this.ios.setIOSApps(values);
             // console.log('IOS Apps', this.ios.getIOSApps());
             this.data.shouldUpdate.next(true);
@@ -111,7 +113,9 @@ export class AppComponent {
         this.androidApps.forEach((app) => {
           this.android.getAppDetails(app).subscribe((data: any) => {
             let values = this.android.getAndroidApps();
-            values = this.pushIfNotPresent(JSON.parse(data.result), values);
+            let newVal = JSON.parse(data.result);
+            newVal["isAdd"] = true;
+            values = this.pushIfNotPresent(newVal, values);
             this.android.setAndroidApps(values);
             this.getAndroidRatings(JSON.parse(data.result));
             this.data.shouldUpdate.next(true);
