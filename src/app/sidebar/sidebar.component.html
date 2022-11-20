@@ -1,4 +1,4 @@
-<div class="close" *ngIf="screen.width < 768" (click)="toggleSideBar()"
+<div class="close" (click)="toggleSideBar()"
     [ngClass]="isOpen ? 'mini-side-open': 'mini-side-closed'">
     <div *ngIf="isOpen">&#x2715;</div>
     <div *ngIf="!isOpen" class="navbar-toggle">
@@ -20,12 +20,20 @@
     <a routerLink="/search" (click)="toggleSideBar()">Add App</a>
     <hr>
     <div class="apps" *ngFor="let app of apps">
-        <div class="app" (click)="selectApp(app)" [ngClass]="app.isSelected ? 'active': ''"
+        <div class="app" (click)="!isDeleting ? selectApp(app) : selectForDelete(app)" [ngClass]="app.isSelected ? 'active': ''"
             [ngStyle]="{backgroundColor : app.isAdd && app.isSelected ? 'var(--navy)' : app.isAdd ? '#ffebc7' : '', color: app.isAdd && app.isSelected ? 'white' : app.isAdd ? 'black' : ''}">
             <div class="inner">
                 <div class="name">{{app.altName}}</div>
-                <div class="rating">{{app.score.toFixed(2)}} / 5</div>
+                <div class="rating" *ngIf="!isDeleting">{{app.score.toFixed(2)}} / 5</div>
+                <div class="delete-rating" *ngIf="isDeleting">{{app.isSelectedForDelete ? '&#10003;' : ''}}</div>
             </div>
+        </div>
+    </div>
+    <div class="apps" *ngIf="apps.length > 0">
+        <div class="app delete" *ngIf="!isDeleting" (click)="toggleDelete()">Delete Apps</div>
+        <div class="delete-open" *ngIf="isDeleting">
+            <div class="red"(click)="deleteApps()">Delete</div>
+            <div class="green" (click)="toggleDelete()">Cancel</div>
         </div>
     </div>
 </div>
