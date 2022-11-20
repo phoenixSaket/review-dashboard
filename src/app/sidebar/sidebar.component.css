@@ -21,7 +21,6 @@
 }
 
 .title {
-    /* padding: 20px 10px; */
     height: 120px;
     display: flex;
     justify-content: center;
@@ -72,7 +71,6 @@
     width: 50px;
     height: 100vh;
     color: white;
-    /* border-radius: 50%; */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -121,7 +119,6 @@
     align-items: center;
     width: 100%;
     writing-mode: vertical-rl;
-    /* text-orientation: upright; */
     text-transform: uppercase;
     transform: rotate(180deg);
     flex-direction: column;
