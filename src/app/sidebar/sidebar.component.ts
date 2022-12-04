@@ -1,14 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import * as e from 'cors';
 import { DataAndroidService } from '../data-android.service';
 import { DataIosService } from '../data-ios.service';
 import { DataService } from '../data.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
   @Input() apps: any[] = [];
@@ -23,7 +24,8 @@ export class SidebarComponent implements OnInit {
     public data: DataService, 
     private router: Router, 
     private ios: DataIosService, 
-    private android: DataAndroidService) {}
+    private android: DataAndroidService,
+    private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.screen = screen;
@@ -38,8 +40,11 @@ export class SidebarComponent implements OnInit {
           if (this.apps.find((x) => x.altName == app.altName) != undefined) {
             this.apps.find((x) => x.altName == app.altName).isSelected = true;
           }
-        });
+          this.cdr.detectChanges();
+        }, 100);
       }
+      this.cdr.detectChanges();
+
     });
 
     this.data.sideBarBehavior.subscribe((data) => {
@@ -48,6 +53,7 @@ export class SidebarComponent implements OnInit {
         this.router.navigate(['/reviews']);
       }
     });
+    this.cdr.detectChanges();
   }
 
   selectApp(appSelected: any) {
