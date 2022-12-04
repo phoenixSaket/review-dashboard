@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import * as env from "../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
@@ -12,26 +13,29 @@ export class DataIosService {
   private iosReviews: any[] = [];
   private iosRatings: any[] = [];
   public appUpdate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private urlHost = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.urlHost = env.environment.renderLink;
+  }
 
   getAppDetails(app: string) {
-    let url = "https://review-be.herokuapp.com/ios/app";
+    let url = this.urlHost + "ios/app";
     return this.http.post(url, { name: parseInt(app) });
   }
 
   getAppReviews(app: string, page: number) {
-    let url = "https://review-be.herokuapp.com/ios/review";
+    let url = this.urlHost + "ios/review";
     return this.http.post(url, { name: app, page: page });
   }
 
   getAPPRatings(app: string) {
-    let url = "https://review-be.herokuapp.com/ios/rating";
+    let url = this.urlHost + "ios/rating";
     return this.http.post(url, { name: app });
   }
 
   searchApp(term: string, num: number, lang: string, price: string) {
-    let url = "https://review-be.herokuapp.com/ios/search";
+    let url = this.urlHost + "ios/search";
     return this.http.post(url, { term: term, num: num, lang: lang, price: price })
   }
 

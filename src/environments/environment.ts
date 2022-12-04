@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  herokuLink : "https://review-be.herokuapp.com/",
+  renderLink : "https://review-un6v.onrender.com/",
 };
 
 /*
