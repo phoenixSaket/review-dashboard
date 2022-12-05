@@ -42,7 +42,10 @@ export class DataService {
   }
 
   getFromLocalStorage() {
-    let apps = JSON.parse(localStorage.getItem("apps") || "");
+    let apps = [];
+    if(typeof(JSON.parse(localStorage.getItem("apps") || "")) == "object") {
+      apps = JSON.parse(localStorage.getItem("apps") || "");
+    }
     return apps;
   }
 
