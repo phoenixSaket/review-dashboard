@@ -15,9 +15,15 @@ export class AppComponent {
     'com.ahnj.ahmobile',
     'com.ahatpa.ahamobile',
     'com.ibxtpa.iamobile',
-    'com.ahc.ahcmobile'
+    'com.ahc.ahcmobile',
   ];
-  private iosApps = ['584785907', '1112137390', '1337168006', '1337166340', '1340456041'];
+  private iosApps = [
+    '584785907',
+    '1112137390',
+    '1337168006',
+    '1337166340',
+    '1340456041',
+  ];
 
   public apps: any[] = [];
 
@@ -25,17 +31,51 @@ export class AppComponent {
     private android: DataAndroidService,
     private ios: DataIosService,
     public data: DataService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.androidApps = this.android.androidAppsDefault;
-    this.iosApps = this.ios.iosAppsDefault;
+    let androidApps: string[] = [];
+    let iosApps: string[] = [];
+    let apps = this.data.getFromLocalStorage();
+    if (apps.length > 0) {
+      apps.forEach((app: any) => {
+        if (app.isIOS) {
+          iosApps.push(app.id);
+        } else {
+          androidApps.push(app.appId);
+        }
+      });
+    }
+
+    if (androidApps.length > 0 || iosApps.length > 0) {
+      if (androidApps.length == 0 && iosApps.length > 0) {
+        this.iosApps = iosApps;
+        this.androidApps = [];
+      } else if (iosApps.length == 0 && androidApps.length > 0) {
+        this.iosApps = [];
+        this.androidApps = androidApps;
+      } else if (androidApps.length > 0 && iosApps.length > 0) {
+        this.androidApps = androidApps;
+        this.iosApps = iosApps;
+      }
+    } else {
+      this.iosApps = this.ios.iosAppsDefault;
+      this.androidApps = this.android.androidAppsDefault;
+    }
+
+    this.data.shouldUpdate.subscribe((shouldUpdate) => {
+      if (shouldUpdate) {
+        this.getApps();
+      }
+    });
+    
     this.androidApps.forEach((app) => {
       this.android.getAppDetails(app).subscribe((data: any) => {
         let values = this.android.getAndroidApps();
         values.push(JSON.parse(data.result));
         this.android.setAndroidApps(values);
         this.getAndroidRatings(JSON.parse(data.result));
+        this.data.shouldUpdate.next(true);
         // console.log('Android Apps', this.android.getAndroidApps());
       });
 
@@ -43,14 +83,10 @@ export class AppComponent {
         let values = this.android.getAndroidReviews();
         values.push({ app: app, review: JSON.parse(data.result) });
         this.android.setAndroidReviews(values);
+        this.data.shouldUpdate.next(true);
         // console.log('Android Reviews', this.android.getAndroidReviews());
       });
 
-      this.data.shouldUpdate.subscribe((shouldUpdate) => {
-        if (shouldUpdate) {
-          this.getApps();
-        }
-      });
     });
 
     this.iosApps.forEach((app) => {
@@ -84,7 +120,7 @@ export class AppComponent {
           this.ios.getAppDetails(app).subscribe((data: any) => {
             let values = this.ios.getIOSApps();
             let newVal = JSON.parse(data.result);
-            newVal["isAdd"] = true;
+            newVal['isAdd'] = true;
             values = this.pushIfNotPresent(newVal, values);
             this.ios.setIOSApps(values);
             // console.log('IOS Apps', this.ios.getIOSApps());
@@ -95,7 +131,10 @@ export class AppComponent {
 
           this.ios.getAPPRatings(app).subscribe((data: any) => {
             let values = this.ios.getIOSRatings();
-            values = this.pushRatingIfNotPresent({ app: app, ratings: JSON.parse(data.result) }, values);
+            values = this.pushRatingIfNotPresent(
+              { app: app, ratings: JSON.parse(data.result) },
+              values
+            );
             this.ios.setIOSRatings(values);
             // console.log('IOS Ratings', this.ios.getIOSRatings());
             this.data.shouldUpdate.next(true);
@@ -107,14 +146,16 @@ export class AppComponent {
     this.android.appUpdate.subscribe((data: boolean) => {
       if (data) {
         this.android.androidAppsDefault.push(this.android.additionalApps[0]);
-        this.androidApps = JSON.parse(JSON.stringify(this.android.additionalApps));
+        this.androidApps = JSON.parse(
+          JSON.stringify(this.android.additionalApps)
+        );
         this.android.additionalApps.pop();
 
         this.androidApps.forEach((app) => {
           this.android.getAppDetails(app).subscribe((data: any) => {
             let values = this.android.getAndroidApps();
             let newVal = JSON.parse(data.result);
-            newVal["isAdd"] = true;
+            newVal['isAdd'] = true;
             values = this.pushIfNotPresent(newVal, values);
             this.android.setAndroidApps(values);
             this.getAndroidRatings(JSON.parse(data.result));
@@ -125,13 +166,15 @@ export class AppComponent {
 
           this.android.getAppReviews(app).subscribe((data: any) => {
             let values = this.android.getAndroidReviews();
-            values = this.pushRatingIfNotPresent({ app: app, review: JSON.parse(data.result) }, values);
+            values = this.pushRatingIfNotPresent(
+              { app: app, review: JSON.parse(data.result) },
+              values
+            );
             this.android.setAndroidReviews(values);
             // console.log('Android Reviews', this.android.getAndroidReviews());
 
             this.data.shouldUpdate.next(true);
           });
-
 
           // this.data.shouldUpdate.subscribe((shouldUpdate) => {
           //   if (shouldUpdate) {
@@ -215,9 +258,11 @@ export class AppComponent {
       apps.push(app);
     });
 
-    apps.sort((a, b) => (a.altName > b.altName) ? 1 : ((b.altName > a.altName) ? -1 : 0))
+    apps.sort((a, b) =>
+      a.altName > b.altName ? 1 : b.altName > a.altName ? -1 : 0
+    );
     this.apps = apps;
-
+    this.data.storeOnLocalStorage(apps);
   }
 
   getAppName(platform: string, appName: string, app: any) {
@@ -240,7 +285,7 @@ export class AppComponent {
           res = 'AH Caritas (Android)';
           break;
         default:
-          res = app.title + " (Android)";
+          res = app.title + ' (Android)';
           break;
       }
     } else if (platform == 'ios') {
@@ -261,7 +306,7 @@ export class AppComponent {
           res = 'AH Caritas (IOS)';
           break;
         default:
-          res = app.title + " (IOS)"
+          res = app.title + ' (IOS)';
           break;
       }
     } else {
@@ -278,7 +323,7 @@ export class AppComponent {
   pushIfNotPresent(entry: any, array: any[]): any[] {
     let temp: any[] = [];
     let id = entry.id || entry.appId;
-    let found = array.find(el => el.id == id || el.appId == id);
+    let found = array.find((el) => el.id == id || el.appId == id);
     if (Object.keys(found || {}).length == 0) {
       array.push(entry);
     }
@@ -289,12 +334,12 @@ export class AppComponent {
   pushRatingIfNotPresent(entry: any, array: any[]): any[] {
     let temp: any[] = [];
     let id = entry.app;
-    let found = array.find(el => el.app == id);
+    let found = array.find((el) => el.app == id);
     if (Object.keys(found || {}).length == 0) {
       array.push(entry);
     }
     temp = array;
-    console.log(temp)
+    console.log(temp);
     return temp;
   }
 }

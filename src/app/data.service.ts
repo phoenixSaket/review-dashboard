@@ -37,4 +37,13 @@ export class DataService {
     this.sideBarBehavior.next({bool: true});
   }
 
+  storeOnLocalStorage(apps: any[]) {
+    localStorage.setItem("apps", JSON.stringify(apps));
+  }
+
+  getFromLocalStorage() {
+    let apps = JSON.parse(localStorage.getItem("apps") || "");
+    return apps;
+  }
+
 }

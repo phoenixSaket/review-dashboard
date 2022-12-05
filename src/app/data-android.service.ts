@@ -19,10 +19,9 @@ export class DataAndroidService {
   private androidReviews: any[] = [];
   private androidRatings: any[] = [];
   public appUpdate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private urlHost = "";
+  private urlHost = "https://review-un6v.onrender.com/";
 
   constructor(private http: HttpClient) { 
-    this.urlHost = env.environment.renderLink;
   }
 
   getAppDetails(app: string) {
